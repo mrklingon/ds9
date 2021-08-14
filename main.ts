@@ -1,5 +1,6 @@
 namespace SpriteKind {
     export const spacestation = SpriteKind.create()
+    export const ship = SpriteKind.create()
 }
 let station: Sprite = null
 scene.setBackgroundImage(img`
@@ -259,7 +260,8 @@ scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     `)
-let pic = 0
+let runabout = sprites.create(assets.image`myImage9`, SpriteKind.ship)
+controller.moveSprite(runabout)
 forever(function () {
     station = sprites.create(ds9[0], SpriteKind.spacestation)
     station.setPosition(20, 20)
