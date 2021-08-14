@@ -262,6 +262,7 @@ scene.setBackgroundImage(img`
     `)
 let runabout = sprites.create(assets.image`myImage9`, SpriteKind.ship)
 controller.moveSprite(runabout)
+runabout.setStayInScreen(true)
 forever(function () {
     station = sprites.create(ds9[0], SpriteKind.spacestation)
     station.setPosition(20, 20)
