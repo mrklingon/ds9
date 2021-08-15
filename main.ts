@@ -2,7 +2,6 @@ namespace SpriteKind {
     export const spacestation = SpriteKind.create()
     export const ship = SpriteKind.create()
 }
-let station: Sprite = null
 scene.setBackgroundImage(img`
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
@@ -135,7 +134,6 @@ assets.image`myImage4`,
 assets.image`myImage7`,
 assets.image`myImage5`
 ]
-let ds9 = [assets.image`myImage2`, assets.image`myImage8`]
 pause(5000)
 effects.starField.startScreenEffect()
 scene.setBackgroundImage(img`
@@ -262,14 +260,11 @@ scene.setBackgroundImage(img`
     `)
 let runabout = sprites.create(assets.image`myImage9`, SpriteKind.ship)
 controller.moveSprite(runabout)
+let dsn = sprites.create(assets.image`myImage2`, SpriteKind.spacestation)
 runabout.setStayInScreen(true)
-forever(function () {
-    station = sprites.create(ds9[0], SpriteKind.spacestation)
-    station.setPosition(20, 20)
-    pause(500)
-    station.destroy()
-    station = sprites.create(ds9[1], SpriteKind.spacestation)
-    station.setPosition(20, 20)
-    pause(500)
-    station.destroy()
-})
+animation.runImageAnimation(
+dsn,
+assets.animation`DS9 small`,
+400,
+true
+)
