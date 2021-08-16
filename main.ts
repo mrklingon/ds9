@@ -11,13 +11,16 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 sprites.onOverlap(SpriteKind.ship, SpriteKind.Enemy, function (sprite, otherSprite) {
     info.changeLifeBy(-1)
+    music.knock.playUntilDone()
+    scene.cameraShake(4, 500)
     jem.destroy()
     jem = sprites.create(assets.image`jem hadar`, SpriteKind.Enemy)
     jem.setPosition(randint(0, 160), randint(0, 120))
-    jem.follow(runabout, 22 / (info.score() * 5))
+    jem.follow(runabout, 22 + info.score() * 5)
 })
 sprites.onOverlap(SpriteKind.ship, SpriteKind.portal, function (sprite, otherSprite) {
     music.wawawawaa.play()
+    info.changeScoreBy(1)
     if (quadrant == 0) {
         dsn.destroy()
         enterGamma()
@@ -270,7 +273,7 @@ sprites.onOverlap(SpriteKind.ship, SpriteKind.portal, function (sprite, otherSpr
         pause(1000)
         effects.starField.endScreenEffect()
         wrm.setImage(assets.image`small wormhole`)
-        info.changeScoreBy(1)
+        info.changeScoreBy(info.score() + 2 * info.score())
         quadrant = 1
     } else {
         exitGamma()
@@ -535,16 +538,12 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     runabout.setImage(assets.image`myImage0`)
 })
 function exitGamma () {
-    for (let index = 0; index < 1; index++) {
-        jem.destroy()
-    }
+    jem.destroy()
 }
 function enterGamma () {
-    for (let index = 0; index < 1; index++) {
-        jem = sprites.create(assets.image`jem hadar`, SpriteKind.Enemy)
-        jem.setPosition(randint(0, 160), randint(0, 120))
-        jem.follow(runabout, 23)
-    }
+    jem = sprites.create(assets.image`jem hadar`, SpriteKind.Enemy)
+    jem.setPosition(randint(0, 160), randint(0, 120))
+    jem.follow(runabout, 22 + info.score() * 5)
 }
 function doDS9 () {
     dsn = sprites.create(assets.image`myImage`, SpriteKind.spacestation)
