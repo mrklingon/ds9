@@ -14,7 +14,7 @@ sprites.onOverlap(SpriteKind.ship, SpriteKind.Enemy, function (sprite, otherSpri
     jem.destroy()
     jem = sprites.create(assets.image`jem hadar`, SpriteKind.Enemy)
     jem.setPosition(randint(0, 160), randint(0, 120))
-    jem.follow(runabout, 23)
+    jem.follow(runabout, 22 / (info.score() * 5))
 })
 sprites.onOverlap(SpriteKind.ship, SpriteKind.portal, function (sprite, otherSprite) {
     music.wawawawaa.play()
